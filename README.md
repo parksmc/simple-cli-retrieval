@@ -97,7 +97,7 @@ To add new analysis types:
 
 ## Requirements
 
-- [Codex CLI](https://docs.codex.anthropic.com/) installed and authenticated
+- [Codex CLI](https://developers.openai.com/codex/cli) installed and authenticated
 - Bash shell (compatible with bash 3.2+, works on macOS and Linux)
 - A markdown-formatted document to analyze (use [MarkItDown](https://github.com/microsoft/markitdown) to convert PDFs, Word docs, Excel sheets, and other office formats to markdown)
 
