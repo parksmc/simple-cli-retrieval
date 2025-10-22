@@ -39,19 +39,19 @@ The included prompts are designed for contract documents, but you can customize 
 3. Each instance analyzes the same document for specific information
 4. Results are saved to separate markdown files in the output folder
 
-## Example Prompts (Contract Focus)
+## Example Prompts (Class Action Settlement Focus)
 
-The included prompts target common contract elements as a demonstration:
+The included prompts target key information from class action settlements:
 
-- **payment_terms.md** - Extract the total settlement amount
-- **key_dates.md** - Extract the first payment due date
-- **parties_and_roles.md** - Extract plaintiff and defendant names
-- **confidentiality.md** - Extract what information must be kept confidential
-- **release_and_liability.md** - Extract what claims are being released
-- **compliance_obligations.md** - Extract document destruction requirements
-- **dispute_resolution.md** - Extract the dispute resolution method
+- **payment_terms.md** - Settlement amount and how money is distributed to class members
+- **key_dates.md** - Top 3 most meaningful dates and their significance
+- **parties_and_roles.md** - Who is eligible to be part of the settlement class
+- **confidentiality.md** - What the lawsuit was about (synthesize allegations)
+- **release_and_liability.md** - What claims class members are releasing
+- **compliance_obligations.md** - How to submit a claim and required information
+- **dispute_resolution.md** - How to opt out or object to the settlement
 
-These serve as templates - adapt them for your specific document types and information needs.
+These demonstrate both simple extraction and synthesis tasks. Adapt them for your specific document types and information needs.
 
 ## Output
 
@@ -76,13 +76,13 @@ Input file: contract.md
 Output directory: results_2025-10-22_14-30-45
 Starting parallel analysis...
 
-→ Starting analysis: Payment Terms
-→ Starting analysis: Key Dates & Deadlines
-→ Starting analysis: Parties & Roles
-→ Starting analysis: Confidentiality
-→ Starting analysis: Release & Liability
-→ Starting analysis: Compliance Obligations
-→ Starting analysis: Dispute Resolution
+→ Starting analysis: Settlement Amount & Distribution
+→ Starting analysis: Key Dates
+→ Starting analysis: Eligibility Criteria
+→ Starting analysis: Case Summary
+→ Starting analysis: Released Claims
+→ Starting analysis: Claim Process
+→ Starting analysis: Opt-Out Rights
 
 All analyses launched. Waiting for completion...
 ```

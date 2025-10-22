@@ -1,5 +1,5 @@
-# Payment Amount Extraction
+# Settlement Amount and Distribution
 
-Find and extract ONLY the total settlement amount from the agreement.
+Extract the total settlement amount and explain how the money will be distributed to class members (payment caps, allocation method).
 
-Do not summarize the entire agreement. Only extract the dollar amount.
+Be concise but include both the total amount and distribution structure.

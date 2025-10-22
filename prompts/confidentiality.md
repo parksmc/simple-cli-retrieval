@@ -1,5 +1,5 @@
-# Confidentiality Extraction
+# Case Summary
 
-Find and extract ONLY the information about what must be kept confidential according to the settlement agreement.
+Explain what this lawsuit was about. What were the plaintiffs alleging that Apple did wrong?
 
-Do not summarize the entire agreement. Only extract the specific confidentiality requirements.
+Synthesize the key allegations from the recitals and definitions sections.

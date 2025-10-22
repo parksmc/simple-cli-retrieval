@@ -1,5 +1,5 @@
-# Document Destruction Extraction
+# Claim Submission Process
 
-Find and extract ONLY what documents must be destroyed or returned.
+How does a class member submit a claim? What is the deadline and what information must they provide?
 
-Do not summarize the entire agreement. Only extract the document destruction requirements.
+Extract the practical steps and requirements for claiming settlement benefits.

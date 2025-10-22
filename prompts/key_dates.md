@@ -1,5 +1,5 @@
-# First Payment Date Extraction
+# Key Dates Extraction
 
-Find and extract ONLY the date when the first payment is due.
+Find and extract the top 3 most meaningful dates in the agreement and explain why each is meaningful.
 
-Do not summarize the entire agreement. Only extract the specific date.
+Do not summarize the entire agreement. Only extract the dates and their significance.

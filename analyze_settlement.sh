@@ -34,13 +34,13 @@ pids=()
 
 # Define the analyses to run (format: "prompt_name:Description")
 analyses=(
-    "payment_terms:Payment Terms"
-    "key_dates:Key Dates & Deadlines"
-    "parties_and_roles:Parties & Roles"
-    "confidentiality:Confidentiality"
-    "release_and_liability:Release & Liability"
-    "compliance_obligations:Compliance Obligations"
-    "dispute_resolution:Dispute Resolution"
+    "payment_terms:Settlement Amount & Distribution"
+    "key_dates:Key Dates"
+    "parties_and_roles:Eligibility Criteria"
+    "confidentiality:Case Summary"
+    "release_and_liability:Released Claims"
+    "compliance_obligations:Claim Process"
+    "dispute_resolution:Opt-Out Rights"
 )
 
 # Launch parallel codex instances

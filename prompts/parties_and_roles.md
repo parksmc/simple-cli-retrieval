@@ -1,5 +1,5 @@
-# Party Names Extraction
+# Class Eligibility Criteria
 
-Find and extract ONLY the names of the plaintiff and defendant.
+Extract who is eligible to be part of the settlement class. What requirements must someone meet to submit a claim?
 
-Do not summarize the entire agreement. Only extract the two party names.
+Be specific about the criteria listed in the agreement.

@@ -1,5 +1,5 @@
-# Release Terms Extraction
+# Released Claims
 
-Find and extract ONLY what claims or disputes are being released in this settlement.
+What claims are being released by class members if they accept this settlement? What are they giving up?
 
-Do not summarize the entire agreement. Only extract the specific claims being released.
+Extract and explain the scope of the release.

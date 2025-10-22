@@ -1,5 +1,5 @@
-# Dispute Resolution Method Extraction
+# Opt-Out and Objection Rights
 
-Find and extract ONLY the method for resolving disputes (arbitration, mediation, or litigation).
+Can class members opt out of this settlement or object to it? If so, how and by when?
 
-Do not summarize the entire agreement. Only extract the dispute resolution mechanism.
+Extract the procedures and deadlines for opting out or objecting.
