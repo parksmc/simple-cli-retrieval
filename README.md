@@ -1,15 +1,15 @@
-# Codex Settlement Agreement Analysis Demo
+# Simple CLI Retrieval with Codex
 
 Demonstrates parallel agentic retrieval using codex's experimental prompt field feature.
 
 ## Overview
 
-This demo shows how to run multiple specialized codex instances in parallel, each extracting specific information from a settlement agreement for administrative purposes.
+This demo shows how to run multiple specialized Codex CLI instances in parallel, each extracting specific information from documents. The included prompts are tailored for contract analysis as a simple example use case, but the pattern works for any type of office document.
 
 ## Structure
 
 ```
-codex-settlement-demo/
+simple-cli-retrieval/
 ├── prompts/                    # Specialized extraction prompts
 │   ├── payment_terms.md
 │   ├── key_dates.md
@@ -24,29 +24,24 @@ codex-settlement-demo/
 
 ## Usage
 
-Run the analysis script with your settlement agreement:
+Run the analysis script with your document (markdown format):
 
 ```bash
-./analyze_settlement.sh /path/to/contract.md
+./analyze_settlement.sh /path/to/document.md
 ```
 
-Or from the parent directory:
+The included prompts are designed for contract documents, but you can customize them for any document type (financial reports, legal briefs, meeting notes, etc.).
 
-```bash
-cd codex-settlement-demo
-./analyze_settlement.sh ../contract.md
-```
-
-## What It Does
+## How It Works
 
 1. Creates a datestamped output folder (e.g., `results_2025-10-22_14-30-45/`)
-2. Launches 7 parallel codex instances, each with a specialized prompt
-3. Each instance analyzes the same settlement agreement for specific information
+2. Launches 7 parallel Codex CLI instances, each with a specialized prompt
+3. Each instance analyzes the same document for specific information
 4. Results are saved to separate markdown files in the output folder
 
-## Prompt Specializations
+## Example Prompts (Contract Focus)
 
-Each prompt file asks a focused extraction question:
+The included prompts target common contract elements as a demonstration:
 
 - **payment_terms.md** - Extract the total settlement amount
 - **key_dates.md** - Extract the first payment due date
@@ -55,6 +50,8 @@ Each prompt file asks a focused extraction question:
 - **release_and_liability.md** - Extract what claims are being released
 - **compliance_obligations.md** - Extract document destruction requirements
 - **dispute_resolution.md** - Extract the dispute resolution method
+
+These serve as templates - adapt them for your specific document types and information needs.
 
 ## Output
 
@@ -67,15 +64,15 @@ All results are saved to a timestamped directory with files named:
 - `compliance_obligations_result.md`
 - `dispute_resolution_result.md`
 
-## Example
+## Example Run
 
 ```bash
-$ ./analyze_settlement.sh ../contract.md
+$ ./analyze_settlement.sh contract.md
 
 ===================================
 Settlement Agreement Analysis
 ===================================
-Input file: ../contract.md
+Input file: contract.md
 Output directory: results_2025-10-22_14-30-45
 Starting parallel analysis...
 
@@ -102,4 +99,15 @@ To add new analysis types:
 
 - [Codex CLI](https://docs.codex.anthropic.com/) installed and authenticated
 - Bash shell (compatible with bash 3.2+, works on macOS and Linux)
-- A markdown-formatted document to analyze (use [MarkItDown](https://github.com/microsoft/markitdown) to convert PDFs and other formats)
+- A markdown-formatted document to analyze (use [MarkItDown](https://github.com/microsoft/markitdown) to convert PDFs, Word docs, Excel sheets, and other office formats to markdown)
+
+## Use Cases
+
+This pattern works well for:
+- **Contracts & legal documents** - Extract parties, terms, dates, obligations
+- **Financial reports** - Extract KPIs, figures, trends from different sections
+- **Meeting notes** - Extract action items, decisions, attendees, follow-ups
+- **Research papers** - Extract methodology, findings, datasets, conclusions
+- **Technical specs** - Extract requirements, dependencies, timelines, constraints
+
+The key is defining focused extraction questions in each prompt file.
