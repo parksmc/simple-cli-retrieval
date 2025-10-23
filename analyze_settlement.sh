@@ -19,7 +19,8 @@ fi
 # Create datestamped output directory
 TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
 OUTPUT_DIR="results_${TIMESTAMP}"
-mkdir -p "$OUTPUT_DIR"
+LOGS_DIR="${OUTPUT_DIR}/logs"
+mkdir -p "$OUTPUT_DIR" "$LOGS_DIR"
 
 echo "==================================="
 echo "Settlement Agreement Analysis"
@@ -51,15 +52,34 @@ for analysis in "${analyses[@]}"; do
 
     prompt_file="${PROMPTS_DIR}/${prompt_name}.md"
     output_file="${OUTPUT_DIR}/${prompt_name}_result.md"
+    log_file="${LOGS_DIR}/${prompt_name}.log"
 
     echo "→ Starting analysis: $description"
 
-    # Run codex in background
+    # Run codex in background with full logging
     (
-        echo "Analyze $SETTLEMENT_FILE" | \
-        codex -c "experimental_instructions_file=\"$prompt_file\"" \
-        exec --skip-git-repo-check - -o "$output_file" 2>&1 | \
-        sed "s/^/[$prompt_name] /" || echo "[$prompt_name] Error occurred"
+        {
+            echo "====================================" >> "$log_file"
+            echo "Analysis: $description" >> "$log_file"
+            echo "Prompt: $prompt_name" >> "$log_file"
+            echo "Started: $(date)" >> "$log_file"
+            echo "====================================" >> "$log_file"
+            echo "" >> "$log_file"
+
+            echo "Analyze $SETTLEMENT_FILE" | \
+            codex -c "experimental_instructions_file=\"$prompt_file\"" \
+            exec --skip-git-repo-check - -o "$output_file" 2>&1 | \
+            tee -a "$log_file" | \
+            sed "s/^/[$prompt_name] /"
+
+            echo "" >> "$log_file"
+            echo "====================================" >> "$log_file"
+            echo "Completed: $(date)" >> "$log_file"
+            echo "====================================" >> "$log_file"
+        } || {
+            echo "[$prompt_name] Error occurred"
+            echo "ERROR: Analysis failed at $(date)" >> "$log_file"
+        }
     ) &
 
     pids+=($!)
@@ -91,6 +111,51 @@ echo ""
 echo "Generated files:"
 ls -lh "$OUTPUT_DIR"
 echo ""
+
+# Extract and display token usage summary from logs
+echo "==================================="
+echo "Token Usage Summary"
+echo "==================================="
+echo ""
+
+total_input_tokens=0
+total_output_tokens=0
+
+for log_file in "$LOGS_DIR"/*.log; do
+    if [ -f "$log_file" ]; then
+        prompt_name=$(basename "$log_file" .log)
+
+        # Extract token counts (adjust patterns based on actual codex output format)
+        input_tokens=$(grep -oE "Input tokens?:? [0-9,]+" "$log_file" | grep -oE "[0-9,]+" | tail -1 | tr -d ',')
+        output_tokens=$(grep -oE "Output tokens?:? [0-9,]+" "$log_file" | grep -oE "[0-9,]+" | tail -1 | tr -d ',')
+
+        if [ -n "$input_tokens" ] && [ -n "$output_tokens" ]; then
+            echo "[$prompt_name]"
+            echo "  Input:  ${input_tokens:-0} tokens"
+            echo "  Output: ${output_tokens:-0} tokens"
+            echo ""
+
+            total_input_tokens=$((total_input_tokens + ${input_tokens:-0}))
+            total_output_tokens=$((total_output_tokens + ${output_tokens:-0}))
+        fi
+    fi
+done
+
+if [ $total_input_tokens -gt 0 ] || [ $total_output_tokens -gt 0 ]; then
+    echo "-----------------------------------"
+    echo "Total Input:  $total_input_tokens tokens"
+    echo "Total Output: $total_output_tokens tokens"
+else
+    echo "Token usage information not found in logs."
+    echo "Check individual log files for raw output."
+fi
+
+echo ""
+echo "==================================="
+echo ""
 echo "To view results:"
 echo "  cat $OUTPUT_DIR/*.md"
+echo ""
+echo "To view detailed logs:"
+echo "  cat $LOGS_DIR/*.log"
 echo ""

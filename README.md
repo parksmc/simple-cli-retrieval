@@ -38,6 +38,8 @@ The included prompts are designed for contract documents, but you can customize 
 2. Launches 7 parallel Codex CLI instances, each with a specialized prompt
 3. Each instance analyzes the same document for specific information
 4. Results are saved to separate markdown files in the output folder
+5. Full execution traces and token usage are logged to `logs/` subdirectory
+6. Token usage summary is displayed at completion with per-analysis and total token counts
 
 ## Example Prompts (Class Action Settlement Focus)
 
@@ -63,6 +65,14 @@ All results are saved to a timestamped directory with files named:
 - `release_and_liability_result.md`
 - `compliance_obligations_result.md`
 - `dispute_resolution_result.md`
+
+A `logs/` subdirectory contains detailed execution traces:
+- Full Codex CLI output for each analysis
+- Token usage information
+- Timestamps for start and completion
+- Error traces if any analysis fails
+
+At completion, the script displays a token usage summary showing input/output token counts for each analysis plus totals.
 
 ## Example Run
 
